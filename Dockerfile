@@ -1,0 +1,17 @@
+FROM node:18
+
+ENV MONGODB_CONNECTION_PROTOCOL mongodb+srv
+ENV MONGODB_DB_NAME supplies
+ENV MONGODB_CLUSTER_ADDRESS localhost
+ENV MONGODB_USERNAME admin
+ENV MONGODB_PASSWORD admin123
+
+WORKDIR /app
+
+COPY package*.json .
+
+RUN npm install
+
+COPY . .
+
+CMD ["npm", "start"]
