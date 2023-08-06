@@ -15,10 +15,18 @@ jobs:
       image: node:17
     env:
       MONGODB_CONNECTION_PROTOCOL: mongodb+srv
-      MONGODB_CLUSTER_ADDRESS: ksb-cluster0.a6avd5m.mongodb.net
-      MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
-      MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
+      MONGODB_CLUSTER_ADDRESS: mongodb #pointing to label below ksb-cluster0.a6avd5m.mongodb.net
+      MONGODB_USERNAME: root
+      MONGODB_PASSWORD: example
+      #MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
+      #MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
       PORT: 8080
+    services: 
+      mongodb: 
+        image: mongo
+        env: 
+          MONGO_INITDB_ROOT_USERNAME: root
+          MONGO_INITDB_ROOT_PASSWORD:  example
     steps:
       - name: Get Code
         uses: actions/checkout@v3
